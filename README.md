@@ -1,6 +1,6 @@
-# Routine
+# Chrobit
 
-Routine is a progressive web app for building and running timed routines. Create a sequence of tasks with durations, group repeating blocks, and play through them with a guided timer—audio cues, pause/skip, and screen wake lock included. Use it for workouts, cooking, skincare, cleaning, focus blocks, or any step-by-step activity that needs a clock.
+Chrobit is a progressive web app for building and running timed routines. Create a sequence of tasks with durations, group repeating blocks, and play through them with a guided timer — audio cues, pause/skip, and screen wake lock included. Use it for workouts, cooking, skincare, cleaning, focus blocks, or any step-by-step activity that needs a clock.
 
 ## Features
 
@@ -15,8 +15,7 @@ Routine is a progressive web app for building and running timed routines. Create
 |---------|-------------|
 | [`packages/web`](packages/web) | React + Vite frontend (PWA) |
 | [`packages/shared`](packages/shared) | Shared TypeScript types |
-
-The repo also includes a backend package (`packages/api`) for a future release with accounts and cloud sync. Early versions use the web app only and do not require a server.
+| [`packages/api`](packages/api) | Backend API (future: accounts & cloud sync) |
 
 ## Prerequisites
 
@@ -25,7 +24,7 @@ The repo also includes a backend package (`packages/api`) for a future release w
 
 ## Quick start
 
-1. **Install dependencies** (from the repo root)
+1. **Install dependencies**
 
    ```bash
    pnpm install
@@ -63,7 +62,7 @@ A **routine** is an ordered list of **items**:
 
 **Transition tasks** can be attached to a routine or group; the player inserts them automatically between steps during playback.
 
-The player flattens groups into a linear step list (with labels like “Round 2 of 3”) and advances the timer automatically when each step completes.
+The player flattens groups into a linear step list (with labels like "Round 2 of 3") and advances the timer automatically when each step completes.
 
 ## Tech stack
 
@@ -74,4 +73,6 @@ The player flattens groups into a linear step list (with labels like “Round 2 
 
 ## License
 
-Private — not licensed for redistribution unless otherwise noted.
+Copyright (C) 2026 Mikhael Tapia
+
+This program is free software: you can redistribute it and/or modify it under the terms of the [GNU General Public License v3.0](LICENSE) as published by the Free Software Foundation.
