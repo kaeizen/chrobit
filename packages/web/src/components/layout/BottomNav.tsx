@@ -1,28 +1,37 @@
 import { NavLink } from 'react-router-dom';
 
-const links = [
-  { to: '/', label: 'Routines', icon: ListIcon },
-  { to: '/settings', label: 'Settings', icon: SettingsIcon },
-];
-
 export function BottomNav() {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-zinc-950/95 backdrop-blur border-t border-zinc-800 safe-bottom flex">
-      {links.map(({ to, label, icon: Icon }) => (
-        <NavLink
-          key={to}
-          to={to}
-          end={to === '/'}
-          className={({ isActive }) =>
-            `flex-1 flex flex-col items-center gap-1 py-3 text-xs font-medium transition-colors ${
-              isActive ? 'text-violet-400' : 'text-zinc-500 hover:text-zinc-300'
-            }`
-          }
-        >
-          <Icon />
-          {label}
-        </NavLink>
-      ))}
+    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-zinc-950/95 backdrop-blur border-t border-zinc-800 safe-bottom flex items-stretch">
+      <NavLink
+        to="/"
+        end
+        className={({ isActive }) =>
+          `flex-1 flex flex-col items-center justify-center gap-1 py-3 text-xs font-medium transition-colors ${
+            isActive ? 'text-violet-400' : 'text-zinc-500 hover:text-zinc-300'
+          }`
+        }
+      >
+        <ListIcon />
+        Routines
+      </NavLink>
+
+      <div className="flex-1 flex flex-col items-center justify-center gap-1 py-2 select-none pointer-events-none">
+        <img src="/android-chrome-192x192.png" alt="Chrobit" width={26} height={26} className="rounded-md" />
+        <span className="text-[10px] font-bold tracking-wide text-zinc-500">Chrobit</span>
+      </div>
+
+      <NavLink
+        to="/settings"
+        className={({ isActive }) =>
+          `flex-1 flex flex-col items-center justify-center gap-1 py-3 text-xs font-medium transition-colors ${
+            isActive ? 'text-violet-400' : 'text-zinc-500 hover:text-zinc-300'
+          }`
+        }
+      >
+        <SettingsIcon />
+        Settings
+      </NavLink>
     </nav>
   );
 }

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 export function TopNav() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 h-14 bg-zinc-950/95 backdrop-blur border-b border-zinc-800 flex items-center justify-between px-4">
+    <header className="fixed top-0 left-0 right-0 z-40 bg-zinc-950/95 backdrop-blur border-b border-zinc-800 flex items-center justify-between px-4 safe-top" style={{ minHeight: '3.5rem' }}>
       <NavLink to="/" className="flex items-center gap-2.5 select-none">
         <img src="/android-chrome-192x192.png" alt="Chrobit" width={28} height={28} className="rounded-md" />
         <span className="text-base font-bold tracking-tight text-zinc-100">Chrobit</span>

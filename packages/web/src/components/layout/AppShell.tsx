@@ -3,19 +3,19 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { BottomNav } from './BottomNav';
 import { TopNav } from './TopNav';
 
-function isPWAOnMobile(): boolean {
+function isPWAOnTouch(): boolean {
   const standalone =
     window.matchMedia('(display-mode: standalone)').matches ||
     (window.navigator as unknown as { standalone?: boolean }).standalone === true;
-  const mobile = window.matchMedia('(max-width: 767px)').matches;
-  return standalone && mobile;
+  const touch = window.matchMedia('(pointer: coarse)').matches;
+  return standalone && touch;
 }
 
-function usePWAMobile() {
-  const [value, setValue] = useState(isPWAOnMobile);
+function usePWAOnTouch() {
+  const [value, setValue] = useState(isPWAOnTouch);
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 767px)');
-    const handler = () => setValue(isPWAOnMobile());
+    const mq = window.matchMedia('(display-mode: standalone)');
+    const handler = () => setValue(isPWAOnTouch());
     mq.addEventListener('change', handler);
     return () => mq.removeEventListener('change', handler);
   }, []);
@@ -25,15 +25,15 @@ function usePWAMobile() {
 export function AppShell() {
   const location = useLocation();
   const isPlayer = location.pathname.startsWith('/play/');
-  const pwaOnMobile = usePWAMobile();
+  const pwaOnTouch = usePWAOnTouch();
 
   return (
     <div className="flex flex-col min-h-svh">
-      {!isPlayer && (pwaOnMobile ? null : <TopNav />)}
-      <main className={`flex-1 ${isPlayer ? '' : pwaOnMobile ? 'pb-nav' : 'pt-nav'}`}>
+      {!isPlayer && (pwaOnTouch ? null : <TopNav />)}
+      <main className={`flex-1 ${isPlayer ? '' : pwaOnTouch ? 'pb-nav' : 'pt-nav'}`}>
         <Outlet />
       </main>
-      {!isPlayer && pwaOnMobile && <BottomNav />}
+      {!isPlayer && pwaOnTouch && <BottomNav />}
     </div>
   );
 }

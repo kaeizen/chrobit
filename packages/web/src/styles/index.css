@@ -31,5 +31,5 @@
   .safe-top { padding-top: var(--safe-top); }
   .safe-bottom { padding-bottom: var(--safe-bottom); }
   .pb-nav { padding-bottom: calc(4rem + var(--safe-bottom)); }
-  .pt-nav { padding-top: 3.5rem; }
+  .pt-nav { padding-top: calc(3.5rem + var(--safe-top)); }
 }
