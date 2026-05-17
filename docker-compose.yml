@@ -1,0 +1,53 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: routine
+      POSTGRES_USER: routine
+      POSTGRES_PASSWORD: routine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U routine"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: packages/api/Dockerfile
+    environment:
+      APP_ENV: dev
+      PORT: 3000
+      DATABASE_URL: postgres://routine:routine@postgres:5432/routine
+      JWT_SECRET: devsecret_changeme
+      CORS_ORIGIN: http://localhost:5173
+    volumes:
+      - ./packages/api/src:/app/packages/api/src:ro
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  web:
+    build:
+      context: .
+      dockerfile: packages/web/Dockerfile
+    environment:
+      VITE_AUTH_MODE: local
+      VITE_HOST: "true"
+      API_PROXY_TARGET: http://api:3000
+    volumes:
+      - ./packages/web/src:/app/packages/web/src:ro
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
