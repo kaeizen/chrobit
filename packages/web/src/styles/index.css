@@ -14,6 +14,7 @@
   body {
     @apply bg-zinc-950 text-zinc-100 antialiased;
     overscroll-behavior: none;
+    min-height: 100vh;
   }
 
   * {
@@ -30,5 +31,6 @@
 @layer utilities {
   .safe-top { padding-top: var(--safe-top); }
   .safe-bottom { padding-bottom: var(--safe-bottom); }
+  .pb-nav { padding-bottom: 0.5rem; }
   .pt-nav { padding-top: calc(3.5rem + var(--safe-top)); }
 }
