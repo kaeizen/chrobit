@@ -30,10 +30,10 @@ export function AppShell() {
   return (
     <div className="flex flex-col min-h-svh">
       {!isPlayer && (pwaOnTouch ? null : <TopNav />)}
-      <main className={`flex-1 ${isPlayer ? '' : true ? 'safe-top pb-nav' : 'pt-nav'}`}>
+      <main className={`flex-1 ${isPlayer ? '' : pwaOnTouch ? 'safe-top pb-nav' : 'pt-nav'}`}>
         <Outlet />
       </main>
-      {!isPlayer && true && <BottomNav />}
+      {!isPlayer && pwaOnTouch && <BottomNav />}
     </div>
   );
 }
